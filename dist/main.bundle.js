@@ -27,7 +27,7 @@ var AppService = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
     }
     AppService.prototype.getClient = function () {
-        return this.http.get('http://localhost:3000/api/clientes/001', this.headers).map(function (response) { return response.json(); });
+        return this.http.get('https://r2e.mybluemix.net/api/clientes/001', this.headers).map(function (response) { return response.json(); });
     };
     AppService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
