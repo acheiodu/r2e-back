@@ -24,13 +24,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppService = (function () {
     function AppService(http) {
         this.http = http;
+        this.base_url = "http://localhost:3000";
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
     }
     AppService.prototype.getClient = function () {
-        return this.http.get('http://localhost:3000/api/clientes/001', this.headers).map(function (response) { return response.json(); });
+        return this.http.get(this.base_url + '/api/clientes/001', this.headers).map(function (response) { return response.json(); });
     };
     AppService.prototype.insertClient = function () {
-        this.http.get('http://localhost:3000/db/clientes/001', this.headers);
+        return this.http.post(this.base_url + '/db/clientes/001', this.headers);
     };
     AppService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
@@ -109,7 +110,7 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.insertClient = function () {
         console.log("Inserting client data.");
-        this.appService.insertClient();
+        this.appService.insertClient().subscribe();
     };
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
@@ -202,7 +203,7 @@ exports = module.exports = __webpack_require__(189)();
 
 
 // module
-exports.push([module.i, ".button {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin: 0px 20px;\r\n    padding: 10px;\r\n}\r\n\r\n.client {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin: 20px 0px;\r\n    padding: 10px;\r\n}\r\n\r\n.info {\r\n    margin: 5px 0px;\r\n}\r\n\r\n.title {\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 50px;\r\n    font-weight: lighter;\r\n    margin: 20px 0px;\r\n}", ""]);
+exports.push([module.i, ".button {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin-right: 20px;\r\n    padding: 10px;\r\n}\r\n\r\n.client {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin: 20px 0px;\r\n    padding: 10px;\r\n}\r\n\r\n.client-container {\r\n    background-color: rgb(221, 221, 221);\r\n    display: inline-block;\r\n    margin: 10px;\r\n    margin-left: 0px;\r\n    padding: 20px;\r\n}\r\n\r\n.div1 {\r\n    border-spacing: 10px;\r\n    display: table;\r\n    table-layout: fixed;\r\n    width: 100%;\r\n}\r\n\r\n.div2 {\r\n    background-color: rgb(221, 221, 221);\r\n    display: table-cell;\r\n}\r\n\r\n.div3 {\r\n    min-height: 200px;\r\n    text-align: center;\r\n}\r\n\r\n.header {\r\n    background-color: rgb(0, 0, 111);\r\n    height: 30px;\r\n    padding-left: 20px;\r\n}\r\n\r\n.info {\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-weight: lighter;\r\n    margin: 5px 0px;\r\n}\r\n\r\n.product-container {\r\n    background-color: rgb(221, 221, 221);\r\n    display: inline-block;\r\n    margin: 10px;\r\n    padding: 20px;\r\n    width: 40%;\r\n}\r\n\r\n.title {\r\n    color: rgb(255, 255, 255);\r\n    display: inline;\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-weight: lighter;\r\n    line-height: 30px;\r\n}", ""]);
 
 // exports
 
@@ -215,7 +216,7 @@ module.exports = module.exports.toString();
 /***/ 457:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title\">{{title}}</div>\n<div class=\"button\" (click)=\"getClient()\">Get</div>\n<div class=\"button\" (click)=\"insertClient()\">Insert</div>\n<br>\n<div class=\"client\" *ngIf=\"client\">\n  <div class=\"info\">Nome: {{client.name}}</div>\n  <div class=\"info\">Endereço: {{client.address}}</div>\n  <div class=\"info\" *ngIf=\"client.addressComplement\">Complemento: {{client.addressComplement}}</div>\n  <div class=\"info\">Número de Caso: {{client.caseNumber}}</div>\n</div>\n"
+module.exports = "<div class=\"header\">\r\n  <div class=\"title\">{{title}}</div>\r\n</div>\r\n<div class=\"div1\">\r\n  <div class=\"div4\">\r\n    <div class=\"div2\">1</div>\r\n    <div class=\"div2\">2</div>\r\n    <div class=\"div2\"><div class=\"div3\">3</div></div>\r\n  </div>\r\n  <div class=\"div4\">\r\n    <div class=\"div2\">4</div>\r\n  </div>\r\n</div>\r\n<div class=\"div1\">\r\n  <div class=\"div2\">1</div>\r\n</div>\r\n<div class=\"product-container\">\r\n  <div class=\"product-info\">\r\n    <div class=\"info\">Produto: Vivo Pré-Pago XPTO</div>\r\n  </div>\r\n</div><div class=\"client-container\">\r\n  <div class=\"client-info\">\r\n    <div class=\"info\">Nome: João Oliveira</div>\r\n  </div>\r\n</div>\r\n<div class=\"button\" (click)=\"getClient()\">Get</div>\r\n<div class=\"button\" (click)=\"insertClient()\">Insert</div>\r\n<br>\r\n<div class=\"client\" *ngIf=\"client\">\r\n  <div class=\"info\">Nome: {{client.name}}</div>\r\n  <div class=\"info\">Endereço: {{client.address}}</div>\r\n  <div class=\"info\" *ngIf=\"client.addressComplement\">Complemento: {{client.addressComplement}}</div>\r\n  <div class=\"info\">Caso: {{client.caseNumber}}</div>\r\n</div>\r\n"
 
 /***/ }),
 

@@ -34,8 +34,8 @@ app.get("/api/clientes/001", function (request, response) {
   response.send(clientData);
 });
 
-app.get("/db/clientes/001", function (request, response) {
-  let clientData =
+app.post("/db/clientes/001", function (request, response) {
+  let client =
     {
       name: "João Oliveira",
       gender: "Male",
@@ -51,14 +51,13 @@ app.get("/db/clientes/001", function (request, response) {
       country: "Brazil"
     };
   if(!mydb) {
-    console.log(client.name + ' not added to the database.');
-    return;
+    return console.log(client.name + ' not added to the database.');;
   }
   mydb.insert(client, function(err, body, header) {
     if (err) {
       return console.log('[mydb.insert] ', err.message);
     }
-    response.send(client.name + ' was added to the database.');
+    response.send('It worked!');
   });
 });
 
@@ -125,6 +124,8 @@ const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 
 const appEnv = cfenv.getAppEnv(appEnvOpts);
 
+console.log(appEnv);
+
 if (appEnv.services['cloudantNoSQLDB']) {
   // Load the Cloudant library.
   var Cloudant = require('cloudant');
@@ -133,7 +134,7 @@ if (appEnv.services['cloudantNoSQLDB']) {
   var cloudant = Cloudant(appEnv.services['cloudantNoSQLDB'][0].credentials);
 
   //database name
-  var dbName = 'mydb';
+  var dbName = 'r2e-db';
 
   // Create a new "mydb" database.
   cloudant.db.create(dbName, function(err, data) {
