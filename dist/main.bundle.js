@@ -101,11 +101,15 @@ var AppComponent = (function () {
         this.appService = appService;
         this.title = 'R2E';
     }
-    AppComponent.prototype.getClientData = function () {
+    AppComponent.prototype.getClient = function () {
         var _this = this;
         console.log("Getting client data.");
         this.appService.getClient().
             subscribe(function (clientJSON) { return _this.client = clientJSON; });
+    };
+    AppComponent.prototype.insertClient = function () {
+        console.log("Inserting client data.");
+        this.appService.insertClient();
     };
     AppComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Component */])({
@@ -211,7 +215,7 @@ module.exports = module.exports.toString();
 /***/ 457:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title\">{{title}}</div>\n<div class=\"button\" (click)=\"getClientData()\">Get</div>\n<div class=\"button\" (click)=\"getClientData()\">Insert</div>\n<br>\n<div class=\"client\" *ngIf=\"client\">\n  <div class=\"info\">Nome: {{client.name}}</div>\n  <div class=\"info\">Endereço: {{client.address}}</div>\n  <div class=\"info\" *ngIf=\"client.addressComplement\">Complemento: {{client.addressComplement}}</div>\n  <div class=\"info\">Número de Caso: {{client.caseNumber}}</div>\n</div>\n"
+module.exports = "<div class=\"title\">{{title}}</div>\n<div class=\"button\" (click)=\"getClient()\">Get</div>\n<div class=\"button\" (click)=\"insertClient()\">Insert</div>\n<br>\n<div class=\"client\" *ngIf=\"client\">\n  <div class=\"info\">Nome: {{client.name}}</div>\n  <div class=\"info\">Endereço: {{client.address}}</div>\n  <div class=\"info\" *ngIf=\"client.addressComplement\">Complemento: {{client.addressComplement}}</div>\n  <div class=\"info\">Número de Caso: {{client.caseNumber}}</div>\n</div>\n"
 
 /***/ }),
 
