@@ -27,7 +27,10 @@ var AppService = (function () {
         this.headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' });
     }
     AppService.prototype.getClient = function () {
-        return this.http.get('https://r2e.mybluemix.net/api/clientes/001', this.headers).map(function (response) { return response.json(); });
+        return this.http.get('http://localhost:3000/api/clientes/001', this.headers).map(function (response) { return response.json(); });
+    };
+    AppService.prototype.insertClient = function () {
+        this.http.get('http://localhost:3000/db/clientes/001', this.headers);
     };
     AppService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* Injectable */])(), 
@@ -195,7 +198,7 @@ exports = module.exports = __webpack_require__(189)();
 
 
 // module
-exports.push([module.i, ".button {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    padding: 10px;\r\n}\r\n\r\n.client {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin: 20px 0px;\r\n    padding: 10px;\r\n}\r\n\r\n.info {\r\n    margin: 5px 0px;\r\n}\r\n\r\n.title {\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 50px;\r\n    font-weight: lighter;\r\n    margin: 20px 0px;\r\n}", ""]);
+exports.push([module.i, ".button {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin: 0px 20px;\r\n    padding: 10px;\r\n}\r\n\r\n.client {\r\n    background-color: rgb(204, 204, 204);\r\n    border-radius: 5px;\r\n    display: inline-block;\r\n    font-family: 'Open Sans', sans-serif;\r\n    margin: 20px 0px;\r\n    padding: 10px;\r\n}\r\n\r\n.info {\r\n    margin: 5px 0px;\r\n}\r\n\r\n.title {\r\n    font-family: 'Open Sans', sans-serif;\r\n    font-size: 50px;\r\n    font-weight: lighter;\r\n    margin: 20px 0px;\r\n}", ""]);
 
 // exports
 
@@ -208,7 +211,7 @@ module.exports = module.exports.toString();
 /***/ 457:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"title\">{{title}}</div>\n<div class=\"button\" (click)=\"getClientData()\">Get</div>\n<br>\n<div class=\"client\" *ngIf=\"client\">\n  <div class=\"info\">Nome: {{client.name}}</div>\n  <div class=\"info\">Endereço: {{client.address}}</div>\n  <div class=\"info\" *ngIf=\"client.addressComplement\">Complemento: {{client.addressComplement}}</div>\n  <div class=\"info\">Número de Caso: {{client.caseNumber}}</div>\n</div>\n"
+module.exports = "<div class=\"title\">{{title}}</div>\n<div class=\"button\" (click)=\"getClientData()\">Get</div>\n<div class=\"button\" (click)=\"getClientData()\">Insert</div>\n<br>\n<div class=\"client\" *ngIf=\"client\">\n  <div class=\"info\">Nome: {{client.name}}</div>\n  <div class=\"info\">Endereço: {{client.address}}</div>\n  <div class=\"info\" *ngIf=\"client.addressComplement\">Complemento: {{client.addressComplement}}</div>\n  <div class=\"info\">Número de Caso: {{client.caseNumber}}</div>\n</div>\n"
 
 /***/ }),
 

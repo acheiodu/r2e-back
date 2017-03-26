@@ -5,6 +5,8 @@ var app = express();
 var cfenv = require("cfenv");
 var bodyParser = require('body-parser');
 
+var mydb;
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -32,7 +34,33 @@ app.get("/api/clientes/001", function (request, response) {
   response.send(clientData);
 });
 
-var mydb;
+app.get("/db/clientes/001", function (request, response) {
+  let clientData =
+    {
+      name: "João Oliveira",
+      gender: "Male",
+      cpf: 34823654786,
+      birthday: "01/05/1982",
+      phone: "(11) 34567823",
+      caseNumber: 3654782369,
+      address: "Av Paulista, 1000",
+      addressComplement: "Ap 53",
+      zipCode: "46578-150",
+      city: "São Paulo",
+      state: "São Paulo",
+      country: "Brazil"
+    };
+  if(!mydb) {
+    console.log(client.name + ' not added to the database.');
+    return;
+  }
+  mydb.insert(client, function(err, body, header) {
+    if (err) {
+      return console.log('[mydb.insert] ', err.message);
+    }
+    response.send(client.name + ' was added to the database.');
+  });
+});
 
 /* Endpoint to greet and add a new visitor to database.
 * Send a POST request to localhost:3000/api/visitors with body
