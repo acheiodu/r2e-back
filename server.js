@@ -4,6 +4,14 @@ var express = require("express");
 var app = express();
 var cfenv = require("cfenv");
 var bodyParser = require('body-parser');
+var watson = require('watson-developer-cloud');
+
+var natural_language_classifier = watson.natural_language_classifier({
+  url: "https://gateway.watsonplatform.net/natural-language-classifier/api",
+  username: "d17904d1-6f95-4783-8f59-3722e58a1893",
+  password: 'PykA1Bvy2i3A',
+  version: 'v1'
+});
 
 var mydb;
 
@@ -112,6 +120,15 @@ app.get("/api/visitors", function (request, response) {
   });
 });
 
+app.post("/classify", function(request, response){
+  natural_language_classifier.classify({
+    text: request.body.input,
+    classifier_id: '90e7acx197-nlc-4599' },
+  function(err, res) {
+    if (err) response.json(err);
+    else response.json(res.classes);
+  });
+});
 
 // load local VCAP configuration  and service credentials
 var vcapLocal;
