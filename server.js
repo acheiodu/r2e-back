@@ -57,7 +57,7 @@ app.post("/db/clientes/001", function (request, response) {
     if (err) {
       return console.log('[mydb.insert] ', err.message);
     }
-    response.send('It worked!');
+    response.send(cfenv);
   });
 });
 
@@ -123,8 +123,6 @@ try {
 const appEnvOpts = vcapLocal ? { vcap: vcapLocal} : {}
 
 const appEnv = cfenv.getAppEnv(appEnvOpts);
-
-console.log(appEnv);
 
 if (appEnv.services['cloudantNoSQLDB']) {
   // Load the Cloudant library.
